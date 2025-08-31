@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import axios from "axios";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || "";
 // Type definitions
 interface User {
   id: string;
@@ -74,7 +75,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       setAuthToken(token);
 
-      const response = await axios.get("/api/users/profile");
+      const response = await axios.get(`${API_BASE_URL}/api/users/profile`);
       setUser(response.data.user);
     } catch (error) {
       console.error("Token verification failed:", error);
@@ -88,10 +89,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // User login
   const login = async (email: string, password: string): Promise<void> => {
     try {
-      const response = await axios.post<LoginResponse>("/api/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post<LoginResponse>(
+        `${API_BASE_URL}/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       const { user: userData, token } = response.data;
       setUser(userData);
@@ -107,10 +111,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Admin login
   const adminLogin = async (email: string, password: string): Promise<void> => {
     try {
-      const response = await axios.post<LoginResponse>("/api/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post<LoginResponse>(
+        `${API_BASE_URL}/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       const { user: userData, token } = response.data;
 
@@ -135,11 +142,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     fullName: string
   ): Promise<void> => {
     try {
-      const response = await axios.post<SignupResponse>("/api/auth/signup", {
-        email,
-        password,
-        fullName,
-      });
+      const response = await axios.post<SignupResponse>(
+        `${API_BASE_URL}/api/auth/signup`,
+        {
+          email,
+          password,
+          fullName,
+        }
+      );
 
       const { user: userData, token } = response.data;
       setUser(userData);
