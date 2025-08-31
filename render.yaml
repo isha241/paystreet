@@ -1,10 +1,14 @@
 services:
   - type: web
-    name: paystreet-backend-new
+    name: paystreet
     env: node
     plan: free
-    buildCommand: npm install
-    startCommand: node server.js
+    buildCommand: |
+      cd frontend && npm install && npm run build
+      cd ../backend && npm install && npm run build
+      echo "Build completed. Frontend build location:"
+      ls -la ../frontend/build/
+    startCommand: cd backend && npm start
     envVars:
       - key: NODE_ENV
         value: production
@@ -15,6 +19,10 @@ services:
       - key: EXCHANGE_RATE_API_URL
         value: https://api.exchangerate.host
       - key: ALLOWED_ORIGINS
-        value: https://frontend-olyoqiblf-isha241s-projects.vercel.app
+        value: https://frontend-b0rrmo8uy-isha241s-projects.vercel.app
+      - key: DATABASE_URL
+        value: postgresql://postgres:password@localhost:5432/paystreet
+      - key: NODE_TLS_REJECT_UNAUTHORIZED
+        value: "0"
     healthCheckPath: /health
     autoDeploy: true
