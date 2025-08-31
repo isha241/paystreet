@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: paystreet-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: EXCHANGE_RATE_API_URL
+        value: https://api.exchangerate.host
+      - key: DATABASE_URL
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true
+    branch: main
