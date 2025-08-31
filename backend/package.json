@@ -2,9 +2,9 @@
   "name": "paystreet-backend",
   "version": "1.0.0",
   "description": "PayStreet Backend API for cross-border remittance",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node dist/server.js",
     "dev": "nodemon --exec ts-node server.ts",
     "build": "tsc",
     "setup-db": "prisma db push && prisma db seed",
