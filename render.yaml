@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: paystreet-backend
+    name: paystreet-backend-new
     env: node
     plan: free
     buildCommand: npm install
