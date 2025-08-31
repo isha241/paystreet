@@ -3,17 +3,8 @@ services:
     name: paystreet-backend
     env: node
     plan: free
-    buildCommand: |
-      echo "Building PayStreet Backend..."
-      cd backend
-      echo "Current directory: $(pwd)"
-      echo "Installing dependencies..."
-      npm install
-      echo "Building TypeScript..."
-      npm run build
-      echo "Build complete. Contents of dist:"
-      ls -la dist/
-    startCommand: node index.js
+    buildCommand: npm install
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production
