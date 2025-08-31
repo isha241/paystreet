@@ -3,7 +3,7 @@ services:
     name: paystreet-backend
     env: node
     plan: free
-    buildCommand: cd backend && npm install
+    buildCommand: cd backend && npm install && npm run build
     startCommand: cd backend && npm start
     envVars:
       - key: NODE_ENV
@@ -14,8 +14,7 @@ services:
         generateValue: true
       - key: EXCHANGE_RATE_API_URL
         value: https://api.exchangerate.host
-      - key: DATABASE_URL
-        sync: false
+      - key: ALLOWED_ORIGINS
+        value: https://frontend-olyoqiblf-isha241s-projects.vercel.app
     healthCheckPath: /health
     autoDeploy: true
-    branch: main
