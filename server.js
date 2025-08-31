@@ -1,4 +1,4 @@
-// PayStreet Backend Server for Render deployment
+// PayStreet Backend Server for Render deployment - UPDATED WITH AUTH ROUTES
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
